@@ -29,7 +29,7 @@
 
                 <div class="contact-card">
                     <h3>📧 E-mail</h3>
-                    <p><a href="mailto:contact@example.com">robbe.schoenmaekers@student.rhizo.be</a></p>
+                    <p><a href="mailto:robbe.schoenmaekers@student.rhizo.be">robbe.schoenmaekers@student.rhizo.be</a></p>
                 </div>
 
                 <div class="contact-card">
@@ -42,7 +42,7 @@
             <div class="contact-form-section">
                 <h2>Contactformulier</h2>
                 <p>Je kunt mij ook bereiken via dit formulier:</p>
-                <form action="#" method="POST" class="contact-form">
+                <form id="contactForm" class="contact-form" onsubmit="handleFormSubmit(event)">
                     <div class="form-group">
                         <label for="name">Naam:</label>
                         <input type="text" id="name" name="name" required>
@@ -63,9 +63,9 @@
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
 
-                    <button href="send.html" class="btn">Verzend bericht</button>
+                    <button type="submit" class="btn">Verzend bericht</button>
                 </form>
-                <p><em>Opmerking: Dit formulier is een placeholder. Je zult dit moeten verbinden met een backend-service voor volledige functionaliteit.</em></p>
+                <p><em>Opmerking: Je bericht wordt opgeslagen en je kunt het bekijken op de bevestigingspagina. Voor volledige functionaliteit kan dit later verbonden worden met een backend-service.</em></p>
             </div>
         </div>
     </div>
@@ -73,5 +73,51 @@
     <footer>
         <p>&copy; 2026 EpicRobbie5. Alle rechten voorbehouden.</p>
     </footer>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Get form data
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Validate form data
+            if (!name || !email || !subject || !message) {
+                alert('Vul alstublieft alle velden in!');
+                return;
+            }
+            
+            // Store form data in localStorage
+            const formData = {
+                name: name,
+                email: email,
+                subject: subject,
+                message: message,
+                timestamp: new Date().toLocaleString('nl-NL')
+            };
+            
+            localStorage.setItem('contactFormData', JSON.stringify(formData));
+            
+            // TODO: Send email using backend service
+            // Example with fetch:
+            // fetch('/api/send-email', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(formData)
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     if (data.success) {
+            //         window.location.href = 'send.html';
+            //     }
+            // });
+            
+            // Redirect to thank you page
+            window.location.href = 'send.html';
+        }
+    </script>
 </body>
 </html>
