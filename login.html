@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mijn Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Inloggen</h1>
+
+<input id="password" type="password" placeholder="Wachtwoord">
+<br><br>
+
+<button onclick="login()">
+    Inloggen
+</button>
+
+<script>
+function login() {
+
+    const password =
+        document.getElementById("password").value;
+
+    if(password === "wright1903") {
+
+        localStorage.setItem(
+            "loggedIn",
+            "true"
+        );
+
+        location.href = "index.html";
+
+    } else {
+
+        alert("Verkeerd wachtwoord!");
+
+    }
+}
+</script>
+
+</body>
+</html>
