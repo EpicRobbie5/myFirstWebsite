@@ -17,15 +17,16 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .login-box {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-
+    border: 2px solid white;
     padding: 40px;
     border-radius: 20px;
 
     width: 350px;
-    text-align: center;
+    text-align: right;
 
     box-shadow:
         0 0 20px rgba(0, 51, 255, 0.5),
