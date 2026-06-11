@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bevestigd - Mijn Website</title>
+    <title>Bericht Verzonden - Mijn Website</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,19 +13,62 @@
         <a href="over-mij.html">Over mij</a>
         <a href="contact.html">Contact</a>
     </div>
+
     <div class="container">
-        <h1>E-mail verzonden!</h1>
+        <h1>Dank je wel! 🎉</h1>
+        
         <div class="content">
-            <p>Uw mail is verzonden, u kunt teruggaan naar de homepagina.</p>
-        </div>
-        <div class="content">
-            <h2>Terug naar Homepagina</h2>
-            <p><a href="index.html" style="color: #0066ff; font-weight: bold;">← Terug naar homepagina</a></p>
+            <h2>Je bericht is verzonden</h2>
+            <p>Bedankt voor je bericht! Ik zal zo snel mogelijk antwoorden.</p>
+
+            <div class="card" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left: 4px solid #4caf50;">
+                <h3 style="color: #2e7d32;">✅ Bericht Ontvangen</h3>
+                <p><strong>Onderwerp:</strong> <span id="display-subject">-</span></p>
+                <p><strong>Van:</strong> <span id="display-name">-</span></p>
+                <p><strong>E-mail:</strong> <span id="display-email">-</span></p>
+            </div>
+
+            <div class="card">
+                <h3>Je bericht:</h3>
+                <p id="display-message" style="background: #f5f5f5; padding: 15px; border-radius: 8px; white-space: pre-wrap; line-height: 1.6;">-</p>
+            </div>
+
+            <div class="card" style="background: #f0f4ff; border-left: 4px solid #0066ff;">
+                <h3>Volgende stappen:</h3>
+                <ul>
+                    <li>Ik zal je bericht controleren</li>
+                    <li>Je ontvangt antwoord op je e-mailadres</li>
+                    <li>Dit kan 1-2 werkdagen duren</li>
+                </ul>
+            </div>
+
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="index.html" class="btn">🏠 Terug naar Home</a>
+                <a href="contact.html" class="btn">📧 Ander Bericht</a>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2026 EpicRobbie5. Alle rechten voorbehouden.</p>
     </footer>
+
+    <script>
+        // Retrieve form data from localStorage
+        const formData = JSON.parse(localStorage.getItem('contactFormData'));
+        
+        if (formData) {
+            document.getElementById('display-subject').textContent = formData.subject || '-';
+            document.getElementById('display-name').textContent = formData.name || '-';
+            document.getElementById('display-email').textContent = formData.email || '-';
+            document.getElementById('display-message').textContent = formData.message || '-';
+            
+            // Clear the stored data after displaying
+            localStorage.removeItem('contactFormData');
+        } else {
+            // If no data found, redirect back to contact page
+            window.location.href = 'contact.html';
+        }
+    </script>
 </body>
 </html>
