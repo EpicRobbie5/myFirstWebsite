@@ -17,6 +17,57 @@ body {
     display: flex;
     flex-direction: column;
 }
+.login-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    padding: 40px;
+    border-radius: 20px;
+
+    width: 350px;
+    text-align: center;
+
+    box-shadow:
+        0 0 20px rgba(0, 51, 255, 0.5),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.login-box h1 {
+    margin-bottom: 30px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+
+    margin-bottom: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    box-sizing: border-box;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #0066ff;
+    color: white;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.login-box button:hover {
+    background: #3385ff;
+    transform: scale(1.03);
+}
 
 /* ===== TOPNAV ===== */
 .topnav {
