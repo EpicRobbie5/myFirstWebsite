@@ -2,43 +2,47 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Mijn Website</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Inloggen</h1>
+    <div class="login-box">
+        <h1>✈️ Inloggen</h1>
 
-<input id="password" type="password" placeholder="Wachtwoord">
-<br><br>
+        <input
+            id="password"
+            type="password"
+            placeholder="Wachtwoord"
+        >
 
-<button onclick="login()">
-    Inloggen
-</button>
+        <button onclick="login()">
+            Inloggen
+        </button>
+    </div>
 
-<script>
-function login() {
+    <script>
+    function login() {
 
-    const password =
-        document.getElementById("password").value;
+        const password =
+            document.getElementById("password").value;
 
-    if(password === "wright1903") {
+        if(password === "wright1903") {
 
-        localStorage.setItem(
-            "loggedIn",
-            "true"
-        );
+            localStorage.setItem(
+                "loggedIn",
+                "true"
+            );
 
-        location.href = "index.html";
+            location.href = "home.html";
 
-    } else {
+        } else {
 
-        alert("Verkeerd wachtwoord!");
+            alert("Verkeerd wachtwoord!");
 
+        }
     }
-}
-</script>
+    </script>
 
 </body>
 </html>
