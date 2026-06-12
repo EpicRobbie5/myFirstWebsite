@@ -189,11 +189,6 @@ body {
     animation: fadeInUp 0.8s ease 0.2s both;
 }
 
-h1::after {
-    content: " ✈️";
-    animation: fly 2s infinite alternate;
-}
-
 /* ===== CARDS ===== */
 .card {
     background: #f8f9ff;
