@@ -450,14 +450,6 @@ footer p {
     }
 }
 
-@keyframes fly {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(10px);
-    }
-}
 .plane {
     position: fixed;
     font-size: 3rem;
@@ -467,7 +459,7 @@ footer p {
 @keyframes fly {
     from {
         left: -100px;
-        top: 20%;
+        top: 80%;
     }
 
     to {
