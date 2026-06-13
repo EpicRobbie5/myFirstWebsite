@@ -32,6 +32,8 @@ EpicRobbie5.github.io/
 ├── settings.html        # Settings
 ├── style.css            # Main stylesheet
 ├── favicon.png          # Favicon image
+├── plane.png            # Plane image for game
+├── CHANGELOG.md         # Project changelog
 ├── SECURITY.md          # Security file
 └── README.md            # Project documentation
 ```
@@ -41,11 +43,18 @@ EpicRobbie5.github.io/
 The main landing page introducing the website and its content.
 
 ### Vliegtuigen ✈️ (`vliegtuigen.html`)
-A showcase of aviation interests featuring information about famous aircraft:
-- Boeing 747 (Jumbo Jet)
-- Airbus A380
+A showcase of aviation interests featuring information about famous aircraft and aircraft companies.
+- Boeing
+- Airbus
 - Concorde
 - Wright Flyer
+
+### Helicopters (`helikopter.html`)
+A non-finshed project about helicopters.
+- Bell UH-1 Iroquois
+- Boeing CH-47 Chinook
+- Sikorsky UH-60 Black Hawk
+- Mil Mi-24
 
 ### Over Mij 👤 (`over-mij.html`)
 Personal information including:
@@ -60,6 +69,14 @@ Contact page featuring:
 - Email contact option
 - Social media placeholder
 - Contact form for direct messages
+
+### Game
+A little game for fun. Do not touch the clouds!
+
+### Settings
+A little setting screen.
+- Dark mode toggle
+- Name
 
 ## 🎨 Design Highlights
 
