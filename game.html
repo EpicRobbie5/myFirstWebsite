@@ -75,6 +75,18 @@
                     cloud.remove();
                     clearInterval(interval);
                 }
+                const planeRect = plane.getBoundingClientRect();
+                const cloudRect = cloud.getBoundingClientRect();
+
+                if (
+                    planeRect.left < cloudRect.right &&
+                    planeRect.right > cloudRect.left &&
+                    planeRect.top < cloudRect.bottom &&
+                    planeRect.bottom > cloudRect.top
+                ) {
+                   alert("💥 Game Over!\nScore: " + score);
+                    location.reload();
+                }
 
             }, 20);
         }
