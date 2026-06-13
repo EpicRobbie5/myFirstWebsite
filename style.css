@@ -511,7 +511,7 @@ footer p {
         opacity: 1;
     }
 }
-.hidden {
+/* .hidden {
     opacity: 0;
     transform: translateY(40px);
     transition: all 0.8s ease;
@@ -521,6 +521,7 @@ footer p {
     opacity: 1;
     transform: translateY(0);
 }
+*/
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     .topnav {
