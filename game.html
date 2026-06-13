@@ -3,114 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game - Mijn Website</title>
+    <title>✈️ Vliegtuigspel - Mijn website</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script>
-    if (
-        localStorage.getItem("loggedIn")
-        !== "true"
-    ) {
-        location.href = "login.html";
+
+<script>
+if (localStorage.getItem("loggedIn") !== "true") {
+    location.href = "login.html";
+}
+</script>
+
+<div class="topnav">
+    <a href="index.html">Home</a>
+    <a href="vliegtuigen.html">Vliegtuigen ✈️</a>
+    <a href="helikopters.html">Helikopters</a>
+    <a href="over-mij.html">Over mij</a>
+    <a href="contact.html">Contact</a>
+</div>
+
+<h1>✈️ Vliegtuigspel Deluxe</h1>
+
+<p>
+    Score: <span id="score">0</span> |
+    Highscore: <span id="highscore">0</span>
+</p>
+
+<div id="game">
+    <div id="plane">✈️</div>
+</div>
+
+<script>
+const game = document.getElementById("game");
+const plane = document.getElementById("plane");
+const scoreElement = document.getElementById("score");
+const highscoreElement = document.getElementById("highscore");
+
+let planeX = 260;
+let score = 0;
+let gameRunning = true;
+let cloudSpeed = 5;
+
+const highscore = localStorage.getItem("highscore") || 0;
+highscoreElement.textContent = highscore;
+
+plane.style.left = planeX + "px";
+
+document.addEventListener("keydown", (event) => {
+
+    if (!gameRunning) return;
+
+    if (event.key === "ArrowLeft") {
+        planeX = Math.max(0, planeX - 25);
     }
-    </script>
-    <div class="topnav">
-        <a href="index.html">Home</a>
-        <a href="vliegtuigen.html">Vliegtuigen ✈️</a>
-        <a href="helikopters.html">Helikopters</a>
-        <a href="over-mij.html">Over mij</a>
-        <a href="contact.html">Contact</a>
-    </div>
-    <h1>✈️ Vliegtuigspel</h1>
 
-    <div id="game">
-        <img id="plane" src="plane.png">
-    </div>
+    if (event.key === "ArrowRight") {
+        planeX = Math.min(520, planeX + 25);
+    }
 
-    <p>Score: <span id="score">0</span></p>
-    <p>Highscore: <span id="highscore"></span></p>
-    <script>
-        let gameRunning = true;
-        const plane = document.getElementById("plane");
+    plane.style.left = planeX + "px";
+});
 
-        let planeX = 280;
+function gameOver() {
 
-        document.addEventListener("keydown", event => {
+    gameRunning = false;
 
-            if (event.key === "ArrowLeft") {
-                planeX = Math.max(0, planeX - 25);
-            }
+    const currentHighscore =
+        Number(localStorage.getItem("highscore") || 0);
 
-            if (event.key === "ArrowRight") {
-                planeX = Math.min(540, planeX + 25);
-            }
+    if (score > currentHighscore) {
+        localStorage.setItem("highscore", score);
+    }
 
-            plane.style.left = planeX + "px";
-        });
-        function createCloud() {
+    alert("💥 Game Over!\\nScore: " + score);
 
-            const cloud = document.createElement("div");
-
-            cloud.textContent = "☁️";
-
-            cloud.style.position = "absolute";
-            cloud.style.fontSize = "100px";
-
-            cloud.style.left =
-                Math.random() * 500 + "px";
-
-            cloud.style.top = "0px";
-
-            document.getElementById("game")
-                .appendChild(cloud);
-
-            let y = 0;
-
-            const interval = setInterval(() => {
-
-                y += 5;
-    
-                cloud.style.top = y + "px";
-
-                if (y > 500) {
-                    cloud.remove();
-                    clearInterval(interval);
-                }
-                const planeRect = plane.getBoundingClientRect();
-                const cloudRect = cloud.getBoundingClientRect();
-
-                if (
-                    planeRect.left < cloudRect.right &&
-                    planeRect.right > cloudRect.left &&
-                    planeRect.top < cloudRect.bottom &&
-                    planeRect.bottom > cloudRect.top
-                ) {
-                    gameRunning = false;
-
-                    alert("💥 Game Over!\nScore: " + score);
-                    let highscore =
-                        localStorage.getItem("highscore") || 0;
-
-                    if (score > highscore) {
-                        localStorage.setItem("highscore", score);
+    location.reload();
 }
 
-                    location.reload();
-                }
+function createCloud() {
 
-            }, 20);
+    if (!gameRunning) return;
+
+    const cloud = document.createElement("div");
+
+    cloud.className = "cloud";
+    cloud.textContent = "☁️";
+
+    cloud.style.position = "absolute";
+    cloud.style.fontSize = "80px";
+    cloud.style.left = Math.random() * 500 + "px";
+    cloud.style.top = "-80px";
+
+    game.appendChild(cloud);
+
+    let y = -80;
+
+    const interval = setInterval(() => {
+
+        if (!gameRunning) {
+            clearInterval(interval);
+            return;
         }
 
-        setInterval(createCloud, 1000);
-        let score = 0;
+        y += cloudSpeed;
+        cloud.style.top = y + "px";
 
-        setInterval(() => {
+        const planeRect = plane.getBoundingClientRect();
+        const cloudRect = cloud.getBoundingClientRect();
 
-            score++;
+        if (
+            planeRect.left < cloudRect.right &&
+            planeRect.right > cloudRect.left &&
+            planeRect.top < cloudRect.bottom &&
+            planeRect.bottom > cloudRect.top
+        ) {
+            clearInterval(interval);
+            gameOver();
+        }
 
-            document.getElementById("score")
-                .textContent = score;
+        if (y > 550) {
+            cloud.remove();
+            clearInterval(interval);
+        }
 
-        }, 1000);
-    </script>
+    }, 20);
+}
+
+setInterval(() => {
+
+    if (!gameRunning) return;
+
+    score++;
+    scoreElement.textContent = score;
+
+    if (score % 15 === 0) {
+        cloudSpeed += 0.5;
+    }
+
+}, 1000);
+
+function spawnClouds() {
+
+    if (!gameRunning) return;
+
+    createCloud();
+
+    const delay =
+        Math.max(300, 1000 - score * 5);
+
+    setTimeout(spawnClouds, delay);
+}
+
+spawnClouds();
+
+</script>
+
+</body>
+</html>
