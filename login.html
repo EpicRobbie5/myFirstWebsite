@@ -28,28 +28,33 @@
     </div>
 
     <script>
-    function login() {
-        const username =
-            document.getElementById("username").value
+        document.getElementById("password").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                login();
+            }
+        });
+        function login() {
+            const username =
+                document.getElementById("username").value
 
-        const password =
-            document.getElementById("password").value;
+            const password =
+                document.getElementById("password").value;
 
-        if(username === "Robbie" && password === "wright1903") {
+            if(username === "Robbie" && password === "wright1903") {
 
-            localStorage.setItem(
-                "loggedIn",
-                "true"
-            );
+                localStorage.setItem(
+                    "loggedIn",
+                    "true"
+                );
 
-            location.href = "index.html";
+                location.href = "index.html";
 
-        } else {
+            } else {
 
-            alert("Verkeerd wachtwoord!");
+                alert("Verkeerd wachtwoord!");
 
+            }
         }
-    }
     </script>
     <footer>
         <p>&copy; 2026 EpicRobbie5. Alle rechten voorbehouden.</p>
@@ -57,14 +62,14 @@
         <p>Laatst bijgewerkt: <span id="lastUpdate"></span></p>
     </footer>
     <script>
-    function logout() {
+        function logout() {
 
-        localStorage.removeItem(
+            localStorage.removeItem(
             "loggedIn"
-        );
+            );
 
-        location.href = "login.html";
-    }
+            location.href = "login.html";
+        }
     </script>
     <script>
         const datum = new Date(document.lastModified);
