@@ -478,11 +478,11 @@ footer p {
 
 #plane {
     position: absolute;
-
+    transition: left 0.1s;
     bottom: 20px;
     left: 280px;
 
-    font-size: 40px;
+    width: 80px;
 }
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInDown {
