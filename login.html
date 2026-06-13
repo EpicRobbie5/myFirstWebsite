@@ -49,7 +49,18 @@
 
                 location.href = "index.html";
 
-            } else {
+            }
+            else if(username === "Plane" && password === "concorde1969") {
+
+                localStorage.setItem(
+                    "loggedIn",
+                    "true"
+                );
+
+                location.href = "index.html";
+
+            }
+            else {
 
                 alert("Verkeerd wachtwoord!");
 
