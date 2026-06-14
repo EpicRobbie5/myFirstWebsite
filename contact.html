@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Mijn Website</title>
@@ -42,11 +43,12 @@
                 </div>
 
                 <div class="contact-card">
-                    <h3>💬 Social Media</h3>
-                    <p>Volg me op sociale media platforms</p>
-                    <p>Sorry, I have no social media!</p>
+                    <h3>Discord</h3>
+                    <p>BedrockRobbie!!!😎</p>
+                    <p>Working for link to Discord.</p>
                 </div>
                 <p>Aub geen vraag naar mijn telefoonnummer.</p>
+                <p>Please no askings for my phone number.</p>
             </div>
 
             <div class="contact-form-section">
@@ -85,49 +87,42 @@
     </footer>
 
     <script>
-        function handleFormSubmit(event) {
-            event.preventDefault(); // Prevent default form submission
-            
-            // Get form data
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const subject = document.getElementById('subject').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            // Validate form data
-            if (!name || !email || !subject || !message) {
-                alert('Vul alstublieft alle velden in!');
-                return;
-            }
-            
-            // Store form data in localStorage
-            const formData = {
+    emailjs.init("L5GY2R9alWEpfthAD");
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const subject = document.getElementById("subject").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !subject || !message) {
+            alert("Vul alle velden in!");
+            return;
+        }
+
+        emailjs.send(
+            "service_dvcyr4x",
+            "template_8e3lpxv",
+            {
                 name: name,
                 email: email,
                 subject: subject,
-                message: message,
-                timestamp: new Date().toLocaleString('nl-NL')
-            };
-            
-            localStorage.setItem('contactFormData', JSON.stringify(formData));
-            
-            // TODO: Send email using backend service
-            // Example with fetch:
-            // fetch('/api/send-email', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(formData)
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     if (data.success) {
-            //         window.location.href = 'send.html';
-            //     }
-            // });
-            
-            // Redirect to thank you page
-            window.location.href = 'send.html';
-        }
+               message: message
+            }
+        )
+        .then(() => {
+            alert("✅ Bericht verzonden!");
+            document.getElementById("contactForm").reset();
+            window.location.href = "send.html";
+        })
+        .catch((error) => {
+            console.error(error);
+            alert("❌ Verzenden mislukt.");
+        });
+    }
     </script>
+
 </body>
 </html>
